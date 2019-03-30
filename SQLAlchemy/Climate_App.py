@@ -61,8 +61,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/Start<br/>"
-        f"/api/v1.0/Start-End"
+        f"/api/v1.0/start<br/>"
+        f"/api/v1.0/start/end"
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -104,27 +104,22 @@ def tobs():
     
     return jsonify(temps_list)
 
-@app.route("/api/v1.0/Start")
-def start():
+@app.route("/api/v1.0/<start>")
+def start(start):
     """Calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date"""
-    start_date = "2016-05-01"
-
     results5 = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-    filter(Measurement.date >= start_date).all()
+    filter(Measurement.date >= start).all()
     
     # Convert list of tuples into regular list
     start_date_temps = list(np.ravel(results5))
     
     return jsonify(start_date_temps)
 
-@app.route("/api/v1.0/Start-End")
-def end():
+@app.route("/api/v1.0/<start>/<end>")
+def end(start, end):
     """Calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive"""
-    start_date = "2016-05-01"
-    end_date = "2016-05-08"
-
     results6 = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-    filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+    filter(Measurement.date >= start).filter(Measurement.date <= end).all()
         
     # Convert list of tuples into regular list
     range_date_temps = list(np.ravel(results6))
