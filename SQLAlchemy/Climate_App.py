@@ -69,12 +69,17 @@ def welcome():
 def precipitation():
     """Return json representation of precipitation query results"""
     results2 = session.query(Measurement.date, Measurement.prcp).\
+    order_by(Measurement.date).\
     filter(Measurement.date >= one_year_date).\
     filter(Measurement.prcp != "None").all()
 
-    # Convert list of tuples into dictionary with date as the key and prcp as the value
-    one_year_prcp = dict(results2)
-
+    # Convert list of tuples into dictionary with date as the key and prcp's as the value
+    one_year_prcp = dict()
+    
+    # Updating the dictionary to account for duplicate date keys
+    [one_year_prcp[t[0]].append(t[1]) if t[0] in list(one_year_prcp.keys())
+     else one_year_prcp.update({t[0]: [t[1]]}) for t in results2]
+    
     return jsonify(one_year_prcp)
 
 @app.route("/api/v1.0/stations")
