@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Lattitude <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="index.html">Lattitude <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +38,7 @@
               </li>
             </ul>
             <li class="nav-item">
-              <a class="nav-link" href="#">Comparison</a>
+              <a class="nav-link" href="comparisons.html">Comparison</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Data</a>
@@ -46,27 +46,35 @@
         </div>
       </nav>
 
+  <main>
     <div class="container">
-    <main>
-      <!-- <div class="row"> -->
-        <div class="col-md-8">
-            <h1>Summary: Latitude vs. X</h1>
-    <div class="image">
-    <img src="Resources/assets/images/Fig1.png" ALIGN="left" HSPACE="25" VSPACE="25"/>
-      <!-- <section class="posts">
-        <article class="post"> -->
-          <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities. 
-          </p>
-        <!-- </article>
-        <article class="post"> -->
-          <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as explanations and descriptions of any trends and correlations witnessed.
-          </p>
-        <!-- </article> -->
-    </main>
-</div>
-</div>
-<div>
-</div>
+          <div class="row">
+            <div id="main-content" class="col-md-7">
+                <h1>Summary: Latitude vs. X</h1>
+              <img id="main-image" src="Resources/assets/images/Fig1.png" ALIGN="left" HSPACE="25" VSPACE="25"/>
+              <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities. 
+              </p>
+              <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as explanations and descriptions of any trends and correlations witnessed.
+              </p>
+            </div>
+            <div id="side-content" class="col-md-5">
+                <h2>Visualizations</h2>
+                <div class="row">
+                  <div class="col-md-12">
+              <img id="side-image1" src="Resources/assets/images/Fig1.png" ALIGN="left">
+              <img id="side-image2" src="Resources/assets/images/Fig2.png" ALIGN="left">
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+              <img id="side-image3" src="Resources/assets/images/Fig3.png" ALIGN="left">
+              <img id="side-image4" src="Resources/assets/images/Fig4.png" ALIGN="left">
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  </main>
 </body>
 
 </html>

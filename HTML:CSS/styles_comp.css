@@ -1,22 +1,47 @@
-/* Giving the body the specified background color, adding font sizes for the h1 and h3 elements we'll be using */
 body {
-    background: #f1f1f1;
+    background: whitesmoke;
   }
   
   h1 {
     font-size: 40px;
     color: lightseagreen;
+    margin-bottom: 20px;
   }
   
   h2 {
-    font-size: 40px;
-    color: lightseagreen;
-    margin-bottom: 30px;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 20px;
   }
 
-  p {
-    font-size: 20px;
+  h3 {
+    font-size: 25px;
+    color: lightseagreen;
+    /* margin-bottom: 40px; */
+    text-align: left;
   }
+
+  h4 {
+    font-size: 25px;
+    color: lightseagreen;
+    /* margin-bottom: 40px; */
+    text-align: right;
+  }
+
+  h5 {
+    font-size: 25px;
+    color: lightseagreen;
+    /* margin-bottom: 40px; */
+    text-align: left;
+  }
+
+  h6 {
+    font-size: 25px;
+    color: lightseagreen;
+    /* margin-bottom: 40px; */
+    text-align: right;
+  }
+
 
   /* Giving our navbar some padding and a background color */
   .navbar {
@@ -46,7 +71,7 @@ body {
   /* Styling the header, giving it a height, a background color, and some top padding */
   .header {
     height: 200px;
-    padding-top: 20px;
+    padding-top: 30px;
     background: #cdcdcd;
   }
   
@@ -56,13 +81,6 @@ body {
     margin: 0;
     color: rgb(110, 63, 63);
     text-align: center;
-  }
-  
-  /* Giving the .post element margin on 3 sides */
-  .post {
-    margin-top: 50px;
-    margin-right: 100px;
-    margin-left: 100px;
   }
   
   /* Adding media queries to show the drop-down, and hide the navbar when the screen is smaller than 480 pixels */
@@ -85,58 +103,49 @@ body {
     }
   }
 
-#main-image {
-    max-width: 30%;
-    max-height: 30%;
-    object-fit: cover;
+#first-image {
+    max-width: 40%;
+    max-height: 40%;
 }
 
-#main-content {
-  background-color: white;
-  padding-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin-top: 40px;
+#second-image {
+  max-width: 40%;
+  max-height: 40%;
 }
 
-#side-content {
+#third-image {
+  max-width: 40%;
+  max-height: 40%;
+}
+
+#fourth-image {
+  max-width: 40%;
+  max-height: 40%;
+}
+
+#first-row {
   background-color: lightgray;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   margin-top: 40px;
 }
 
-#side-image1 {
-  max-width: 50%;
-  max-height: 50%;
-  padding-right: 10px;
+#second-row {
+  background-color: lightgray;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-top: 40px;
 }
 
-#side-image2 {
-  max-width: 50%;
-  max-height: 50%;
-  padding-right: 10px;
-}
-
-#side-image3 {
-  max-width: 50%;
-  max-height: 50%;
-  padding-right: 10px;
-  padding-top: 30px;
-}
-
-#side-image4 {
-  max-width: 50%;
-  max-height: 50%;
-  padding-right: 10px;
-  padding-top: 30px;
-}
 
 .container {
-  width: 100%;
+  background-color: lightgray;
+  padding-top: 5px;
 }
+
 
   
