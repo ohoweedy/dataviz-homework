@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Web Visualization Dashboard</title>
+  <title>Lattitude</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
@@ -31,9 +31,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="max_temp.html">City Latitude vs Max Temp</a>
-                  <a class="dropdown-item" href="#">City Latitude vs Humidity</a>
-                  <a class="dropdown-item" href="#">City Latitude vs Cloudiness</a>
-                  <a class="dropdown-item" href="#">City Latitude vs Wind Speed</a>
+                  <a class="dropdown-item" href="humidity.html">City Latitude vs Humidity</a>
+                  <a class="dropdown-item" href="cloudiness.html">City Latitude vs Cloudiness</a>
+                  <a class="dropdown-item" href="wind_speed.html">City Latitude vs Wind Speed</a>
                 </div>
               </li>
             </ul>
@@ -41,7 +41,7 @@
               <a class="nav-link" href="comparisons.html">Comparison</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Data</a>
+                <a class="nav-link" href="data.html">Data</a>
             </li>
         </div>
       </nav>
@@ -51,6 +51,7 @@
           <div class="row">
             <div id="main-content" class="col-md-7">
                 <h1>Summary: Latitude vs. X</h1>
+                <hr>
               <img id="main-image" src="Resources/assets/images/Fig1.png" ALIGN="left" HSPACE="25" VSPACE="25"/>
               <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities. 
               </p>
@@ -59,6 +60,7 @@
             </div>
             <div id="side-content" class="col-md-5">
                 <h2>Visualizations</h2>
+                <hr>
                 <div class="row">
                   <div class="col-md-12">
               <a href=max_temp.html><img id="side-image1" src="Resources/assets/images/Fig1.png" ALIGN="left"/></a>
