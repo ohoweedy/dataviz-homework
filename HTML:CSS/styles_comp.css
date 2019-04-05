@@ -17,29 +17,25 @@ body {
   h3 {
     font-size: 25px;
     color: lightseagreen;
-    /* margin-bottom: 40px; */
-    text-align: left;
+    text-align: center;
   }
 
   h4 {
     font-size: 25px;
     color: lightseagreen;
-    /* margin-bottom: 40px; */
-    text-align: right;
+    text-align: center;
   }
 
   h5 {
     font-size: 25px;
     color: lightseagreen;
-    /* margin-bottom: 40px; */
-    text-align: left;
+    text-align: center;
   }
 
   h6 {
     font-size: 25px;
     color: lightseagreen;
-    /* margin-bottom: 40px; */
-    text-align: right;
+    text-align: center;
   }
 
 
@@ -104,28 +100,22 @@ body {
   }
 
 #first-image {
-    max-width: 40%;
-    max-height: 40%;
+  padding:1px;border:thick solid black;
 }
 
 #second-image {
-  max-width: 40%;
-  max-height: 40%;
+  padding:1px;border:thick solid black;
 }
 
 #third-image {
-  max-width: 40%;
-  max-height: 40%;
+  padding:1px;border:thick solid black;
 }
 
 #fourth-image {
-  max-width: 40%;
-  max-height: 40%;
+  padding:1px;border:thick solid black;
 }
 
 #first-row {
-  /* background-color: white; */
-  /* padding-top: 5px; */
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
@@ -133,14 +123,11 @@ body {
 }
 
 #second-row {
-  /* background-color: white; */
-  /* padding-top: 5px; */
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   margin-top: 40px;
 }
-
 
 .container {
   background-color: white;
