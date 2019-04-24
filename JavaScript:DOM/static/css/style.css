@@ -75,6 +75,21 @@ select {
 
 #table-area th {
   text-align: center;
+  border: 3px solid black;
+}
+
+#table-area tr {
+  text-align: center;
+  border: 3px solid black;
+}
+
+#table-area td {
+  text-align: center;
+  border: 3px solid black;
+}
+
+#filter-btn {
+  border: 3px solid black;
 }
 
 #table-area th:first-child,
