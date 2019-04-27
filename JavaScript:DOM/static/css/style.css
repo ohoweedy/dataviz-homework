@@ -92,6 +92,10 @@ select {
   border: 3px solid black;
 }
 
+#refresh-btn {
+  border: 3px solid black;
+}
+
 #table-area th:first-child,
 #table-area th:nth-child(2),
 #table-area th:nth-child(6) {
