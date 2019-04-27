@@ -33,19 +33,111 @@ submit.on("click", function() {
   d3.event.preventDefault();
 
   // Select the input element and get the raw HTML node
-  var inputElement = d3.select("#datetime");
+  var dateinputElement = d3.select("#datetime");
+  var cityinputElement = d3.select("#city");
+  var stateinputElement = d3.select("#state");
+  var countryinputElement = d3.select("#country");
+  var shapeinputElement = d3.select("#shape");
 
   // Get the value property of the input element
-  var inputValue = inputElement.property("value");
+  var dateinputValue = dateinputElement.property("value");
+  var cityinputValue = cityinputElement.property("value");
+  var stateinputValue = stateinputElement.property("value");
+  var countryinputValue = countryinputElement.property("value");
+  var shapeinputValue = shapeinputElement.property("value");
+/*
+  console.log(dateinputValue);
+  console.log(cityinputValue);
+  console.log(stateinputValue);
+  console.log(countryinputValue);
+  console.log(shapeinputValue);
 
-  console.log(inputValue);
   console.log(tableData);
+*/
+  var data_filter = tableData.filter(x => {
+    /*
+    console.log(x.datetime === dateinputValue);
+    console.log(x.city === cityinputValue);
+    console.log(x.state === stateinputValue);
+    console.log(x.country === countryinputValue);
+    console.log(x.shape === shapeinputValue);
+    */
+    let datebool = true;
+    let citybool = true;
+    let statebool = true;
+    let countrybool = true;
+    let shapebool = true;
 
-  var date_filter = tableData.filter(x => x.datetime === inputValue);
+    console.log("date, city value:")
+    console.log(dateinputValue, cityinputValue)
+    console.log(typeof(dateinputValue), typeof(cityinputValue))
 
-  console.log(date_filter);
+    if(x.datetime === dateinputValue){
+      datebool = true;
+    } else if(!dateinputValue) {
+      datebool = true;
+    } else {
+      datebool = false;
+    }
+    
+    if(x.city === cityinputValue){
+      citybool = true;
+    } else if(!cityinputValue){
+      citybool = true;
+    }else {
+      citybool = false;
+    }
+
+    if(x.state === stateinputValue){
+      statebool = true;
+    } else if(!stateinputValue){
+      statebool = true;
+    }else {
+      statebool = false;
+    }
+
+    if(x.country === countryinputValue){
+      countrybool = true;
+    } else if(!countryinputValue){
+      countrybool = true;
+    }else {
+      countrybool = false;
+    }
+
+    if(x.shape === shapeinputValue){
+      shapebool = true;
+    } else if(!shapeinputValue){
+      shapebool = true;
+    }else {
+      shapebool = false;
+    }
+
+    return (datebool && citybool && statebool && countrybool && shapebool)
+
+
+    // if(dateinputValue == "undefined" || dateinputValue == "") {
+    //   return x.datetime === dateinputValue
+    // }
+    // else if 
+
+  });
+  
+  //console.log(data_filter);
 
   d3.select('#ufo-table tbody').html(' ')
 
-  Build_Table(date_filter);
+  Build_Table(data_filter);
 });
+
+
+
+// Notes:
+
+// var date_filter = tableData.filter(x => {
+  // if(inputValue == "undefined" || inputValue == "")
+  
+  // x.datetime === inputValue;
+  // x.city === someinputValue;
+// });
+
+// return  x.datetime === dateinputValue && x.city === cityinputValue && x.state === stateinputValue && x.country === countryinputValue && x.shape === shapeinputValue;
