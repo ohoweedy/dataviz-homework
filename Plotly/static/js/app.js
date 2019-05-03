@@ -112,6 +112,14 @@ function buildCharts(sample) {
     var layout1 = {
       title: `Sample ${sample} Bubble Plot`,
       showlegend: false,
+      xaxis: {
+        title: 'OTU ID',
+        showline: false
+      },
+      yaxis: {
+        title: 'SAMPLE VALUES',
+        showline: false
+      }
     };
     
     Plotly.newPlot("bubble", data1, layout1);
