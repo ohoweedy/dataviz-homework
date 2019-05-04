@@ -71,7 +71,7 @@ function buildMetadata(sample) {
                 color: '850000'
               }
             }],
-          title: `Sample ${sample} <br> Washer Frequency: 0-9`,
+          title: `Belly Button Sample ${sample} Washing Frequency<br> Scrubs per Week`,
           height: 500,
           width: 500,
           xaxis: {zeroline:false, showticklabels:false,
