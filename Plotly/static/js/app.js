@@ -103,8 +103,8 @@ function buildCharts(sample) {
       marker: {
         color: x_values,
         size: y_values,
-        text: text_values,
-      }
+      },
+      text: text_values
     };
 
     var data1 = [trace1];
@@ -137,7 +137,7 @@ function buildCharts(sample) {
     var data2 = [{
       values: slice_y,
       labels: x_values,
-      hoverinfo: text_values,
+      hovertext: text_values,
       type: 'pie'
     }];
 
