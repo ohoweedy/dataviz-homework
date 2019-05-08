@@ -35,9 +35,23 @@
   stroke: #e3e3e3;
 }
 
-.chart {
-  display: block;
+.chart::before {
+  /* display: block;
   margin: 0;
+  background-image: "miami_hurricanes.jpg"; */
+  position: absolute;
+  top: 50px;
+  left: 300px;
+  z-index: -1;
+  display: block;
+  width: 400px;
+  height: 300px;
+  content: " ";
+  background-image: url("miami_hurricanes.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  opacity: 0.3;
 }
 
 .d3-tip {

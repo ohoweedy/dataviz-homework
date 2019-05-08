@@ -25,14 +25,14 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "hair_length";
+var chosenXAxis = "in_poverty";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(hairData, chosenXAxis) {
+function xScale(stateData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(hairData, d => d[chosenXAxis]) * 0.8,
-      d3.max(hairData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(stateData, d => d[chosenXAxis]) * 0.8,
+      d3.max(stateData, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -65,18 +65,18 @@ function renderCircles(circlesGroup, newXScale, chosenXaxis) {
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
-  if (chosenXAxis === "hair_length") {
-    var label = "Hair Length:";
+  if (chosenXAxis === "in_poverty") {
+    var label = "In Poverty (%):";
   }
   else {
-    var label = "# of Albums:";
+    var label = "Age (Median):";
   }
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.rockband}<br>${label} ${d[chosenXAxis]}`);
+      return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
     });
 
   circlesGroup.call(toolTip);
@@ -98,9 +98,12 @@ d3.csv("data.csv", function(err, stateData) {
 
   // parse data
   stateData.forEach(function(data) {
-    data.hair_length = +data.hair_length;
-    data.num_hits = +data.num_hits;
-    data.num_albums = +data.num_albums;
+    data.poverty = +data.poverty;
+    data.age = +data.age;
+    data.income = +data.income;
+    data.obesity = +data.obesity;
+    data.smokes = +data.smokes;
+    data.healthcareLow = +data.healthcareLow;
   });
 
   // xLinearScale function above csv import
@@ -108,7 +111,7 @@ d3.csv("data.csv", function(err, stateData) {
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(stateData, d => d.num_hits)])
+    .domain([0, d3.max(stateData, d => d.healthcareLow)])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -131,7 +134,7 @@ d3.csv("data.csv", function(err, stateData) {
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
-    .attr("cy", d => yLinearScale(d.num_hits))
+    .attr("cy", d => yLinearScale(d.healthcareLow))
     .attr("r", 20)
     .attr("fill", "pink")
     .attr("opacity", ".5");
@@ -140,19 +143,26 @@ d3.csv("data.csv", function(err, stateData) {
   var labelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
-  var hairLengthLabel = labelsGroup.append("text")
+  var povertyLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
-    .attr("value", "hair_length") // value to grab for event listener
+    .attr("value", "in_poverty") // value to grab for event listener
     .classed("active", true)
-    .text("Hair Metal Ban Hair Length (inches)");
+    .text("In Poverty (%)");
 
-  var albumsLabel = labelsGroup.append("text")
+  var ageLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "num_albums") // value to grab for event listener
+    .attr("value", "median_age") // value to grab for event listener
     .classed("inactive", true)
-    .text("# of Albums Released");
+    .text("Age (Median)");
+
+  var incomeLabel = labelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 40)
+    .attr("value", "median_income") // value to grab for event listener
+    .classed("inactive", true)
+    .text("Household Income (Median)");
 
   // append y axis
   chartGroup.append("text")
@@ -161,7 +171,7 @@ d3.csv("data.csv", function(err, stateData) {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .classed("axis-text", true)
-    .text("Number of Billboard 500 Hits");
+    .text("Lacks Healthcare (%)");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -192,22 +202,38 @@ d3.csv("data.csv", function(err, stateData) {
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "num_albums") {
-          albumsLabel
+        if (chosenXAxis === "in_poverty") {
+          povertyLabel
             .classed("active", true)
             .classed("inactive", false);
-          hairLengthLabel
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          incomeLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        }
+        else if {
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
+            .classed("active", true)
+            .classed("inactive", false);
+          incomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
         else {
-          albumsLabel
+          povertyLabel
             .classed("active", false)
             .classed("inactive", true);
-          hairLengthLabel
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          incomeLabel
             .classed("active", true)
             .classed("inactive", false);
-        }
       }
     });
 });
