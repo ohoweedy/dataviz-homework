@@ -25,7 +25,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "in_poverty";
+var chosenXAxis = "poverty";
 
 // function used for updating x-scale var upon click on axis label
 function xScale(stateData, chosenXAxis) {
@@ -65,10 +65,10 @@ function renderCircles(circlesGroup, newXScale, chosenXaxis) {
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
-  if (chosenXAxis === "in_poverty") {
+  if (chosenXAxis === "poverty") {
     var label = "poverty";
   }
-  else if (chosenXAxis === "median_age") {
+  else if (chosenXAxis === "age") {
     var label = "age";
   }
   else 
@@ -148,21 +148,21 @@ d3.csv("data.csv", function(err, stateData) {
   var povertyLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
-    .attr("value", "in_poverty") // value to grab for event listener
+    .attr("value", "poverty") // value to grab for event listener
     .classed("active", true)
     .text("In Poverty (%)");
 
   var ageLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "median_age") // value to grab for event listener
+    .attr("value", "age") // value to grab for event listener
     .classed("inactive", true)
     .text("Age (Median)");
 
   var incomeLabel = xlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 60)
-    .attr("value", "median_income") // value to grab for event listener
+    .attr("value", "income") // value to grab for event listener
     .classed("inactive", true)
     .text("Household Income (Median)");
 
@@ -220,7 +220,7 @@ d3.csv("data.csv", function(err, stateData) {
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "in_poverty") {
+        if (chosenXAxis === "poverty") {
           povertyLabel
             .classed("active", true)
             .classed("inactive", false);
@@ -231,7 +231,7 @@ d3.csv("data.csv", function(err, stateData) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "median_age") {
+        else if (chosenXAxis === "age") {
           povertyLabel
             .classed("active", false)
             .classed("inactive", true);
