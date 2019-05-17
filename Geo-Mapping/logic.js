@@ -74,4 +74,40 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+  
+  for (var i = 0; i < features.length; i++) {
+
+    // Conditionals for earthquake magnitudes; colors:
+    var color = "";
+    if (features[i].properties.mag > 5) {
+      color = "red";
+    }
+    else if (features[i].properties.mag > 4) {
+      color = "darkorange";
+    }
+    else if (features[i].properties.mag > 3) {
+      color = "lightorange";
+    }
+    else if (features[i].properties.mag > 2) {
+      color = "lightgreen";
+    }
+    else if (features[i].properties.mag > 1) {
+      color = "lightyellow";
+    }
+    else {
+      color = "lightgreen";
+    }
+  
+    // Add circles to map
+    L.circle(features[i].geometry.coordinates, {
+      fillOpacity: 0.75,
+      color: "white",
+      fillColor: color,
+      // Adjust radius
+      radius: features[i].properties.mag * 1500
+    }).bindPopup("<h3>" + feature.properties.place +
+    "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+  }
+  
 }
