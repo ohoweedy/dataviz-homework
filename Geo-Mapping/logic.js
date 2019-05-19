@@ -22,23 +22,23 @@ function createFeatures(earthquakeData) {
 
         // Conditionals for earthquake magnitude colors:
         var color = "";
-        if (feature.properties.mag >5 ) {
+        if (feature.properties.mag > 5 ) {
           color = "red";
         }
         else if (feature.properties.mag > 4) {
           color = "darkorange";
         }
         else if (feature.properties.mag > 3) {
-          color = "lightorange";
+          color = "teal";
         }
         else if (feature.properties.mag > 2) {
           color = "lightgreen";
         }
         else if (feature.properties.mag > 1) {
-          color = "lightyellow";
+          color = "lightblue";
         }
         else {
-          color = "lightgreen";
+          color = "lightcoral";
         }
     return new L.Circle(latlng, {radius: feature.properties.mag * 35000, fillOpacity: 0.25, color: color, fillcolor: "green"});
       },
@@ -93,4 +93,30 @@ function createMap(earthquakes) {
     collapsed: false
   }).addTo(myMap);
 
+  function getColor(d) {
+    return d > 5 ? "red" :
+           d > 4  ? "darkorange" :
+           d > 3  ? "teal" :
+           d > 2  ? "lightgreen" :
+           d > 1   ? "lightblue" :
+                      "lightcoral";
   }
+  var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (myMap) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+    mags = [0, 1, 2, 3, 4, 5],
+    labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < mags.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(mags[i] + 1) + '"></i> ' +
+            mags[i] + (mags[i + 1] ? '&ndash;' + mags[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+  };
+  legend.addTo(myMap);
+}
