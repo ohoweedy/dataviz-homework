@@ -1,9 +1,3 @@
-// Store our API endpoint inside queryUrl
-// Create a  function returns the style data for each of the earthquakes we plot on
-// the map. THEN pass the magnitude of the earthquake into two separate functions
-// to calculate the color and radius.
-
-
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Perform a GET request to the query URL
@@ -19,11 +13,35 @@ function createFeatures(earthquakeData) {
   function onEachFeature(feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
       "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  }
+    }
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
   // Run the onEachFeature function once for each piece of data in the array
   var earthquakes = L.geoJSON(earthquakeData, {
+    pointToLayer: function(feature, latlng) {
+
+        // Conditionals for earthquake magnitude colors:
+        var color = "";
+        if (feature.properties.mag >5 ) {
+          color = "red";
+        }
+        else if (feature.properties.mag > 4) {
+          color = "darkorange";
+        }
+        else if (feature.properties.mag > 3) {
+          color = "lightorange";
+        }
+        else if (feature.properties.mag > 2) {
+          color = "lightgreen";
+        }
+        else if (feature.properties.mag > 1) {
+          color = "lightyellow";
+        }
+        else {
+          color = "lightgreen";
+        }
+    return new L.Circle(latlng, {radius: feature.properties.mag * 35000, fillOpacity: 0.25, color: color, fillcolor: "green"});
+      },
     onEachFeature: onEachFeature
   });
 
@@ -75,39 +93,4 @@ function createMap(earthquakes) {
     collapsed: false
   }).addTo(myMap);
 
-  
-  for (var i = 0; i < features.length; i++) {
-
-    // Conditionals for earthquake magnitudes; colors:
-    var color = "";
-    if (features[i].properties.mag > 5) {
-      color = "red";
-    }
-    else if (features[i].properties.mag > 4) {
-      color = "darkorange";
-    }
-    else if (features[i].properties.mag > 3) {
-      color = "lightorange";
-    }
-    else if (features[i].properties.mag > 2) {
-      color = "lightgreen";
-    }
-    else if (features[i].properties.mag > 1) {
-      color = "lightyellow";
-    }
-    else {
-      color = "lightgreen";
-    }
-  
-    // Add circles to map
-    L.circle(features[i].geometry.coordinates, {
-      fillOpacity: 0.75,
-      color: "white",
-      fillColor: color,
-      // Adjust radius
-      radius: features[i].properties.mag * 1500
-    }).bindPopup("<h3>" + feature.properties.place +
-    "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
-  
-}
